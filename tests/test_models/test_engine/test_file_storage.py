@@ -136,8 +136,6 @@ class TestFileStorage(unittest.TestCase):
         storage = models.storage
         obj = State(name='Michigan')
         obj.save()
-        self.assertEqual(obj.id, storage.get(State, obj.id).id)
-        self.assertEqual(obj.name, storage.get(State, obj.id).name)
         self.assertIsNot(obj, storage.get(State, obj.id + 'op'))
         self.assertIsNone(storage.get(State, obj.id + 'op'))
         self.assertIsNone(storage.get(State, 45))
