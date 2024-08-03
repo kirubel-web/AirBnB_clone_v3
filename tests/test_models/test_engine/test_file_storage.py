@@ -108,7 +108,7 @@ class testFileStorage(unittest.TestCase):
         except:
             self.assertTrue(False)
 
-    """ def test_delete(self):
+    def test_delete(self):
         '''
             Test delete method
         '''
@@ -121,7 +121,7 @@ class testFileStorage(unittest.TestCase):
         with open("file.json", encoding="UTF-8") as fd:
             state_dict = json.load(fd)
         for k, v in state_dict.items():
-            self.assertFalse(state_id == k.split('.')[1]) """
+            self.assertFalse(state_id == k.split('.')[1])
 
     def test_model_storage(self):
         '''
