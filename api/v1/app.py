@@ -4,9 +4,9 @@ Flask App that integrates with AirBnB static HTML Template
 """
 from api.v1.views import app_views
 from flask import Flask, jsonify, make_response, render_template, url_for
-from models import storage
 from flask_cors import CORS, cross_origin
 from flasgger import Swagger
+from models import storage
 import os
 from werkzeug.exceptions import HTTPException
 
@@ -60,7 +60,5 @@ if __name__ == "__main__":
     """
     MAIN Flask App
     """
-    # initializes global error handling
     setup_global_errors()
-    # start Flask app
     app.run(host=host, port=port)
