@@ -26,6 +26,7 @@ def stats():
             response[value] = storage.count(key)
         return jsonify(response)
 
+
 @app_views.route('/status', methods=['GET'])
 def status():
     """
