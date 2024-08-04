@@ -4,9 +4,9 @@ Flask App that integrates with AirBnB static HTML Template
 """
 from api.v1.views import app_views
 from flask import Flask, jsonify, make_response, render_template, url_for
-from flask_cors import CORS, cross_origin
 from flasgger import Swagger
 from models import storage
+from flask_cors import CORS, cross_origin
 import os
 from werkzeug.exceptions import HTTPException
 
@@ -32,6 +32,14 @@ def teardown_db(exception):
     storage.close()
 
 
+def setup_global_errors():
+    """
+    This updates HTTPException Class with custom error function
+    """
+    for cls in HTTPException.__subclasses__():
+        app.register_error_handler(cls, global_error_handler)
+
+
 @app.errorhandler(Exception)
 def global_error_handler(err):
     """
@@ -46,14 +54,6 @@ def global_error_handler(err):
         message = {'error': err}
         code = 500
     return make_response(jsonify(message), code)
-
-
-def setup_global_errors():
-    """
-    This updates HTTPException Class with custom error function
-    """
-    for cls in HTTPException.__subclasses__():
-        app.register_error_handler(cls, global_error_handler)
 
 
 if __name__ == "__main__":
