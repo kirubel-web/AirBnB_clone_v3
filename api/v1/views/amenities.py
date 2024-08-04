@@ -14,7 +14,7 @@ def amenities_no_id(amenity_id=None):
         amenities route that handles http requests no ID given
     """
     if request.method == 'GET':
-         amenities = []
+        amenities = []
     for amenity in storage.all("Amenity").values():
         amenities.append(amenity.to_dict())
     return jsonify(amenities)
