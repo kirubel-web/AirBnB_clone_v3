@@ -50,8 +50,7 @@ def delete_state(state_id):
     return (jsonify({}))
 
 
-@app_views.route('/states/<string:state_id>', methods=['PUT'],
-                 strict_slashes=False)
+@app_views.route('/states/<string:state_id>', methods=['PUT'], strict_slashes=False)
 def put_state(state_id):
     """update a state"""
     state = storage.get("State", state_id)
