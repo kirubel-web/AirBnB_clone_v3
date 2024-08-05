@@ -27,7 +27,7 @@ def get_city(city_id):
     """
     Retrieves the city object.
     """
-    City = storage.get(City, city_id)
+    city = storage.get(City, city_id)
     if city:
         return jsonify(city.to_dict())
     else:
@@ -39,7 +39,7 @@ def delete_city(city_id):
     """
     Would delete the city object.
     """
-    City = storage.get(City, city_id)
+    city = storage.get(City, city_id)
     if city:
         storage.delete(city)
         storage.save()
