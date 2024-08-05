@@ -10,7 +10,8 @@ from models.city import City
 from flask import abort, jsonify, make_response, request
 
 
-@app_views.route('/states/<state_id>/cities', methods=['GET'], strict_slashes=False)
+@app_views.route('/states/<state_id>/cities', methods=['GET'],
+                 strict_slashes=False)
 def get_cities_by_states(state_id):
     """
     Retrieve city information for all city objects
@@ -48,7 +49,8 @@ def delete_city(city_id):
         return abort(404)
 
 
-@app_views.route('/states/<state_id>/cities', methods=['POST'], strict_slashes=False)
+@app_views.route('/states/<state_id>/cities', methods=['POST'],
+                 strict_slashes=False)
 def create_city(state_id):
     """
     Creates a City object.
@@ -59,7 +61,7 @@ def create_city(state_id):
     if not state:
         return abort(404)
     if not request.get_json():
-        return(400, 'Not a JSON')
+        return (400, 'Not a JSON')
     data = request.get_json()
     if 'name' not in data:
         return abort(400, 'Missing name')
