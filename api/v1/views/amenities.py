@@ -17,7 +17,7 @@ def amenities_no_id(amenity_id=None):
         amenities = []
     for amenity in storage.all("Amenity").values():
         amenities.append(amenity.to_dict())
-    return jsonify(amenities)
+        return jsonify(amenities)
 
     if request.method == 'POST':
         if not request.get_json():
