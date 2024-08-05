@@ -4,8 +4,8 @@
 """
 from api.v1.views import app_views
 from flask import abort, jsonify, request
-from models import storage
-from models.amenity import Amenity
+from models import storage, CNC
+from flasgger.utils import swag_from
 
 
 @app_views.route('/amenities/', methods=['GET', 'POST'])
@@ -14,19 +14,20 @@ def amenities_no_id(amenity_id=None):
         amenities route that handles http requests no ID given
     """
     if request.method == 'GET':
-        amenities = []
-    for amenity in storage.all("Amenity").values():
-        amenities.append(amenity.to_dict())
-        return jsonify(amenities)
+        all_amenities = storage.all('Amenity')
+        all_amenities = [obj.to_json() for obj in all_amenities.values()]
+        return jsonify(all_amenities)
 
     if request.method == 'POST':
-        if not request.get_json():
-            return make_response(jsonify({'error': 'Not a JSON'}), 400)
-        if 'name' not in request.get_json():
-            return make_response(jsonify({'error': 'Missing name'}), 400)
-        amenity = Amenity(**request.get_json())
-        amenity.save()
-        return make_response(jsonify(amenity.to_dict()), 201)
+        req_json = request.get_json()
+        if req_json is None:
+            abort(400, 'Not a JSON')
+        if req_json.get('name') is None:
+            abort(400, 'Missing name')
+        Amenity = CNC.get('Amenity')
+        new_object = Amenity(**req_json)
+        new_object.save()
+        return jsonify(new_object.to_json()), 201
 
 
 @app_views.route('/amenities/<amenity_id>', methods=['GET', 'DELETE', 'PUT'])
