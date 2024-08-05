@@ -5,4 +5,3 @@ from api.v1.views.states import *  # noqa
 from api.v1.views.amenities import *  # noqa
 from api.v1.views.cities import *  # noqa
 from api.v1.views.users import *  # noqa
-
