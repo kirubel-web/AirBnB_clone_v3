@@ -15,11 +15,11 @@ def get_cities_by_states(state_id):
     """
     Retrieve city information for all city objects
     """
-state = storage.get(State, state_id)
-if not state:
-    return abort(404)
-cities = [city.to_dict() for city in state.cities]
-return jsonify(cities)
+    state = storage.get(State, state_id)
+    if not state:
+        return abort(404)
+    cities = [city.to_dict() for city in state.cities]
+    return jsonify(cities)
 
 
 @app_views.route('/cities/<city_id>', methods=['GET'], strict_slashes=False)
