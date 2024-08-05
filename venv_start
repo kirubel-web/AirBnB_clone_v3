@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+source flask_venv/bin/activate

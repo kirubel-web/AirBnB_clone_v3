@@ -1,0 +1,22 @@
+#This file contains all the dependencies needed for this project
+
+# Flask is the web framework
+flask
+
+# Flask-CORS is used for Cross-Origin Resource Sharing
+flask_cors
+
+# Flasgger provides Swagger documentation
+flasgger
+
+# SQLAlchemy is the ORM for database interactions
+sqlalchemy
+
+# MySQL client for interfacing with MySQL databases
+mysqlclient  # or pymysql if you prefer
+
+# Werkzeug is a WSGI utility library for Flask
+werkzeug
+
+# PEP8 is for style guide warnings (optional)
+pep8
